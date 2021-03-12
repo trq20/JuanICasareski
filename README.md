@@ -14,3 +14,4 @@
 
 - [x] Nombre, edad y escuela
 - [x] Header y emphasis 
+- [x] Si le se al chitpost 
