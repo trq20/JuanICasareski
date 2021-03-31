@@ -12,7 +12,7 @@ namespace Calculadora
 {
     public partial class Form1 : Form
     {
-        List<decimal> Numbers = new List<decimal>();
+        List<double> Numbers = new List<double>();
         List<string> Oprs = new List<string>();
 
         bool resolved = false;
@@ -91,18 +91,13 @@ namespace Calculadora
 
             textBox1.Text += boton0.Text;
         }
+
         private void botonComa_Click(object sender, EventArgs e)
         {
-            if (!isEmpty(textBox1.Text))        // Si el numero actual está vacio Pongo 0.
-            {
-                textBox1.Text += "0,";          // Agrego 0, al numero actual
-                textBox2.Text += "0.";          // Agrego 0, a la formula
-            }
-            else
-            {
-                textBox1.Text += botonComa.Text;    // Agrego una coma al numero actual
-                textBox2.Text += botonComa.Text;    // Agrego el numero actual a a formula
-            }
+            if (isEmpty(textBox1.Text)) textBox1.Text += "0,";
+
+            else textBox1.Text += botonComa.Text;
+
         }
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +109,7 @@ namespace Calculadora
                 textBox2.Text += textBox1.Text;                 // Agrego el numero a la formula
                 textBox2.Text += botonBy.Text;                  // Agrego el operador a la formula
 
-                Numbers.Add(Convert.ToDecimal(textBox1.Text));  // Agrego el numero actual a la lista
+                Numbers.Add(Convert.ToDouble(textBox1.Text));  // Agrego el numero actual a la lista
                 textBox1.Clear();                               // Limpio el numero actual
 
                 Oprs.Add(botonBy.Text);                         // Agrego el operador a la lista
@@ -128,7 +123,7 @@ namespace Calculadora
                 textBox2.Text += textBox1.Text;
                 textBox2.Text += botonTimes.Text;
 
-                Numbers.Add(Convert.ToDecimal(textBox1.Text));
+                Numbers.Add(Convert.ToDouble(textBox1.Text));
                 textBox1.Clear();
 
                 Oprs.Add(botonTimes.Text);
@@ -142,7 +137,7 @@ namespace Calculadora
                 textBox2.Text += textBox1.Text;
                 textBox2.Text += botonMinus.Text;
 
-                Numbers.Add(Convert.ToDecimal(textBox1.Text));
+                Numbers.Add(Convert.ToDouble(textBox1.Text));
                 textBox1.Clear();
 
                 Oprs.Add(botonMinus.Text);
@@ -156,7 +151,7 @@ namespace Calculadora
                 textBox2.Text += textBox1.Text;
                 textBox2.Text += botonPlus.Text;
 
-                Numbers.Add(Convert.ToDecimal(textBox1.Text));
+                Numbers.Add(Convert.ToDouble(textBox1.Text));
                 textBox1.Clear();
 
                 Oprs.Add(botonPlus.Text);
@@ -164,15 +159,16 @@ namespace Calculadora
         }
 
         //////////////////////////////////////////////////////////////////////////////////
+        
         private void botonEqual_Click(object sender, EventArgs e)
         {
             if (!isEmpty(textBox1.Text))                        // Si el numero actual está vacio no hago nada
             {
                 textBox2.Text += textBox1.Text;                 // Agrego el numero a la formula
 
-                Numbers.Add(Convert.ToDecimal(textBox1.Text));  // Agrego el numero actual a la variable
+                Numbers.Add(Convert.ToDouble(textBox1.Text));  // Agrego el numero actual a la variable
 
-                List<decimal> r = Resolver(Numbers, Oprs);      // Guardo la lista de 1 resultado en otra variable
+                List<double> r = Resolver(Numbers, Oprs);      // Guardo la lista de 1 resultado en otra variable
                 string Result = Convert.ToString(r[0]);         // Paso a string el resultado
 
                 textBox1.Clear();                               // Borro el numero actual
@@ -189,6 +185,7 @@ namespace Calculadora
         }
 
         //////////////////////////////////////////////////////////////////////////////////
+        
         private void botonClearAll_Click(object sender, EventArgs e)
         {   // Limpia toda la formula y el numero actual
 
@@ -205,7 +202,8 @@ namespace Calculadora
         }
 
         //////////////////////////////////////////////////////////////////////////////////
-        public List<decimal> Resolver(List<decimal> Numbers, List<string> Oprs)
+        
+        public List<double> Resolver(List<double> Numbers, List<string> Oprs)
         {
 
             while (Oprs.Contains("x") || Oprs.Contains("/"))
@@ -217,7 +215,7 @@ namespace Calculadora
                     if (Oprs[i] == "x")
                     {   // Si el operador x
 
-                        decimal result = Numbers[i] * Numbers[i + 1];
+                        double result = Numbers[i] * Numbers[i + 1];
 
                         Numbers.RemoveAt(i + 1);    // Borro el segundo numero del calculo
                         Numbers.RemoveAt(i);        // Borro el primer numero del calculo
@@ -228,7 +226,7 @@ namespace Calculadora
                 
                     else if (Oprs[i] == "/")
                     {
-                        decimal result = Numbers[i] / Numbers[i + 1];
+                        double result = Numbers[i] / Numbers[i + 1];
 
                         Numbers.RemoveAt(i + 1);
                         Numbers.RemoveAt(i);
@@ -249,7 +247,7 @@ namespace Calculadora
                     if (Oprs[i] == "+")
                     {
 
-                        decimal result = Numbers[i] + Numbers[i + 1];
+                        double result = Numbers[i] + Numbers[i + 1];
 
                         Numbers.RemoveAt(i + 1);
                         Numbers.RemoveAt(i);
@@ -260,7 +258,7 @@ namespace Calculadora
 
                     else if (Oprs[i] == "-")
                     {
-                        decimal result = Numbers[i] - Numbers[i + 1];
+                        double result = Numbers[i] - Numbers[i + 1];
 
                         Numbers.RemoveAt(i + 1);
                         Numbers.RemoveAt(i);
@@ -287,8 +285,6 @@ namespace Calculadora
             if (str == "") return true;
             else return false;
         }
-
-        // Por alguna razon cuando hay 3 o mas divisiones juntas tira cualquier cosa el programa
 
     }
 }
