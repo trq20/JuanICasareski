@@ -96,6 +96,8 @@ namespace Calculadora
         {
             if (isEmpty(textBox1.Text)) textBox1.Text += "0,";
 
+            else if (textBox1.Text.Contains(",")){}             // Por alguna razon si pongo un ; solo me tira un error en verdecito 
+
             else textBox1.Text += botonComa.Text;
 
         }
@@ -109,7 +111,7 @@ namespace Calculadora
                 textBox2.Text += textBox1.Text;                 // Agrego el numero a la formula
                 textBox2.Text += botonBy.Text;                  // Agrego el operador a la formula
 
-                Numbers.Add(Convert.ToDouble(textBox1.Text));  // Agrego el numero actual a la lista
+                Numbers.Add(Convert.ToDouble(textBox1.Text));   // Agrego el numero actual a la lista
                 textBox1.Clear();                               // Limpio el numero actual
 
                 Oprs.Add(botonBy.Text);                         // Agrego el operador a la lista
@@ -285,6 +287,6 @@ namespace Calculadora
             if (str == "") return true;
             else return false;
         }
-
+        
     }
 }

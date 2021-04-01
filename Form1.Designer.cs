@@ -300,6 +300,7 @@ namespace Calculadora
             this.Controls.Add(this.boton9);
             this.Controls.Add(this.boton8);
             this.Controls.Add(this.boton7);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
