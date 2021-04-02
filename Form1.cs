@@ -210,7 +210,7 @@ namespace Calculadora
 
             while (Oprs.Contains("x") || Oprs.Contains("/"))
             {   // Mientras oprs contenga 'x' o '/', repito
-
+                b:
                 for (int i = 0; i < Oprs.Count(); i++)
                 {   // Para c/u de los operadores en la lista
 
@@ -224,6 +224,8 @@ namespace Calculadora
                         Oprs.RemoveAt(i);           // Borro el operador del calculo
 
                         Numbers.Insert(i, result);  // Agrego el resultado a Numbers
+
+                        goto b;
                     }
                 
                     else if (Oprs[i] == "/")
@@ -235,6 +237,8 @@ namespace Calculadora
                         Oprs.RemoveAt(i);
 
                         Numbers.Insert(i, result);
+
+                        goto b;
                     }
                 }
 
@@ -242,7 +246,7 @@ namespace Calculadora
 
             while (Oprs.Contains("+") || Oprs.Contains("-"))
             {   // Mientras oprs contenga '+' o '-', repito
-
+                
                 for (int i = 0; i < Oprs.Count(); i++)
                 {
 
