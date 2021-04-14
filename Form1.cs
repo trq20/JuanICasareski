@@ -144,6 +144,7 @@ namespace Calculadora
 
                 Oprs.Add(botonMinus.Text);
             }
+            else textBox1.Text += botonMinus.Text;              // Si no hay nada pongo el - correspondiente
         }
 
         private void botonPlus_Click(object sender, EventArgs e)
@@ -168,9 +169,9 @@ namespace Calculadora
             {
                 textBox2.Text += textBox1.Text;                 // Agrego el numero a la formula
 
-                Numbers.Add(Convert.ToDouble(textBox1.Text));  // Agrego el numero actual a la variable
+                Numbers.Add(Convert.ToDouble(textBox1.Text));   // Agrego el numero actual a la variable
 
-                List<double> r = Resolver(Numbers, Oprs);      // Guardo la lista de 1 resultado en otra variable
+                List<double> r = Resolver(Numbers, Oprs);       // Guardo la lista de 1 resultado en otra variable
                 string Result = Convert.ToString(r[0]);         // Paso a string el resultado
 
                 textBox1.Clear();                               // Borro el numero actual
