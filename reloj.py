@@ -26,7 +26,7 @@ for hora in range(360):
 
         if a == hora:
             tft.line(circulox, circuloy, circulox+x, circuloy+y, BLACK)
-            
+        sleep(1)
     #el clear acá
 
 
