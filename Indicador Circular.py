@@ -27,8 +27,10 @@ def indicar(ang):
         y = int(sin(radians(a))*radio)
         tft.pixel(circulox+x, circuloy+y, WHITE)
 
-        if a == ang:
-            tft.line(circulox, circuloy, circulox+x, circuloy+y, WHITE)
+    xLinea = int(cos(radians(ang))*radio)
+    yLinea = int(sin(radians(ang))*radio)
+    tft.line(circulox, circuloy, circulox-xLinea, circuloy+yLinea, WHITE)
+
     sleep(1)
     tft.fill(BLACK)
 
@@ -36,7 +38,3 @@ while(1):
     entrada = adc.read()
     angulo = entrada*180/4095
     indicar(angulo)
-
-
-
-
